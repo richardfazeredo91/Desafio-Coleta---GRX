@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './style.css';
 
 function QuestionsForm() {
   const [formData, setFormData] = useState({
@@ -8,25 +9,57 @@ function QuestionsForm() {
     answerJustification: '',
   });
 
+  const [buttonClass, setButtonClass] = useState({
+    goodAtLogic: {
+      yes: 'deactive-button',
+      no: 'deactive-button',
+    },
+    likeToLearn: {
+      yes: 'deactive-button',
+      no: 'deactive-button',
+    },
+  });
+
+  const {
+    goodAtLogic, likeToLearn,
+  } = buttonClass;
+
+  const setButtonColor = (name) => {
+    if (formData[name] === 'Sim') {
+      setButtonClass(
+        { ...buttonClass, [name]: { yes: 'active-button', no: 'deactive-button' } },
+      );
+    } else {
+      setButtonClass(
+        { ...buttonClass, [name]: { no: 'active-button', yes: 'deactive-button' } },
+      );
+    }
+  };
+
   const handleEvents = ({ target: { name, value } }) => {
     setFormData({ ...formData, [name]: value });
+    setButtonColor(name);
   };
 
   return (
-    <form action="">
-      <label htmlFor="goodAtLogic">
+    <form action="" className="collect-form">
+      <label htmlFor="goodAtLogic" className="question-one">
         1 - Você se considera bom em lógica?
-        <input type="button" name="goodAtLogic" onClick={handleEvents} value="Sim" />
-        <input type="button" name="goodAtLogic" onClick={handleEvents} value="Não" />
+        <div>
+          <input type="button" className={goodAtLogic.yes} name="goodAtLogic" onClick={handleEvents} value="Sim" />
+          <input type="button" className={goodAtLogic.no} name="goodAtLogic" onClick={handleEvents} value="Não" />
+        </div>
       </label>
 
-      <label htmlFor="likeToLearn">
+      <label htmlFor="likeToLearn" className="question-two">
         2 - Gosta de aprender com desafios?
-        <input type="button" name="likeToLearn" onClick={handleEvents} value="Sim" />
-        <input type="button" name="likeToLearn" onClick={handleEvents} value="Não" />
+        <div>
+          <input type="button" className={likeToLearn.yes} name="likeToLearn" onClick={handleEvents} value="Sim" />
+          <input type="button" className={likeToLearn.no} name="likeToLearn" onClick={handleEvents} value="Não" />
+        </div>
       </label>
 
-      <label htmlFor="answers">
+      <label htmlFor="answers" className="question-three">
         3 - Gostaria de fazer parte da GRX?
         <select name="likeToBePartOfGRX" onChange={handleEvents} id="likeToBePartOfGRX">
           <option value="Sim">Sim</option>
@@ -36,7 +69,7 @@ function QuestionsForm() {
         </select>
       </label>
 
-      <label htmlFor="answerJustification">
+      <label htmlFor="answerJustification" className="question-four">
         4 - Por favor, justifique a resposta anterior
         <textarea
           name="answerJustification"
@@ -49,8 +82,8 @@ function QuestionsForm() {
         />
       </label>
 
-      <label htmlFor="submit">
-        <input type="button" id="submit" value="enviar" />
+      <label htmlFor="submit" className="submit-label">
+        <input type="button" id="submit" value="enviar" className="submit" />
       </label>
     </form>
   );

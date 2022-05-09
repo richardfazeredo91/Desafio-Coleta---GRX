@@ -1,0 +1,31 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+}
+
+.question-one, .question-two, .question-three, .question-four, .submit-label {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+}
+
+.deactive-button {
+  border-radius: 5px;  
+  height: 35px;  
+  width: 70px; 
+}
+
+.active-button {
+  background-color: green;
+  border-radius: 5px;
+  height: 35px;  
+  width: 70px; 
+}
+
+.submit {
+  border-radius: 5px;
+  height: 45px;
+  margin-top: 10px;
+  width: 90px;
+}
