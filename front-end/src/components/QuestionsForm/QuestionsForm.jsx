@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './style.css';
 
-function QuestionsForm() {
+function QuestionsForm(props) {
   const [formData, setFormData] = useState({
     goodAtLogic: '',
     likeToLearn: '',
@@ -24,6 +24,9 @@ function QuestionsForm() {
     goodAtLogic, likeToLearn,
   } = buttonClass;
 
+  // eslint-disable-next-line react/prop-types
+  const { setTextareaCounter } = props;
+
   const setButtonColor = (name) => {
     if (formData[name] === 'Sim') {
       setButtonClass(
@@ -37,8 +40,10 @@ function QuestionsForm() {
   };
 
   const handleEvents = ({ target: { name, value } }) => {
+    const { length } = formData.answerJustification;
     setFormData({ ...formData, [name]: value });
     setButtonColor(name);
+    setTextareaCounter(length);
   };
 
   return (
