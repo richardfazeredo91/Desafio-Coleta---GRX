@@ -1,3 +1,7 @@
+.counter-container {
+  float: right;
+}
+
 .counter-outside-range {
-  color: red;  
+  color: red;
 }
