@@ -83,7 +83,7 @@ function QuestionsForm() {
       </label>
 
       <label htmlFor="submit" className="submit-label">
-        <input type="button" id="submit" value="enviar" className="submit" />
+        <input type="button" id="submit" value="Enviar" className="submit" />
       </label>
     </form>
   );
